@@ -11,6 +11,20 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
+    ext {
+        koinVersion = '2.2.3'
+        retrofitVersion = '2.7.2'
+        okHttp3Version = '4.2.2'
+        coreKtxVersion = '1.6.0'
+        androidxAppCompatVersion = '1.3.1'
+        materialVersion = '1.4.0'
+        jUnitVersion = '4.12'
+        androidxJUnitVersion = '1.1.3'
+        androidxEspressoVersion = '3.4.0'
+        constraintLayoutVersion = '2.1.1'
+        lifecycleVersion = '2.3.1'
+    }
 }
 
 task clean(type: Delete) {
