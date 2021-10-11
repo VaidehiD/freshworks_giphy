@@ -5,4 +5,14 @@
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+
+    <dimen name="gif_image_view_height">200dp</dimen>
+    <dimen name="gif_image_view_width">200dp</dimen>
+    <dimen name="gif_image_margin">10dp</dimen>
+
+    <dimen name="gif_like_height">40dp</dimen>
+    <dimen name="gif_like_width">40dp</dimen>
+
+    <dimen name="gif_title_text_size">18sp</dimen>
+    <dimen name="gif_title_width">200dp</dimen>
 </resources>

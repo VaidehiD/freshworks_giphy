@@ -24,6 +24,7 @@ buildscript {
         androidxEspressoVersion = '3.4.0'
         constraintLayoutVersion = '2.1.1'
         lifecycleVersion = '2.3.1'
+        pagingVersion = '3.0.0'
     }
 }
 

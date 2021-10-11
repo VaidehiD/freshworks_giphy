@@ -5,7 +5,7 @@ import com.freshworks.domain.repository.GifRepository
 
 class GetTrendingGifsImpl(val repository: GifRepository): GetTrendingGifs {
 
-    override suspend fun call(requestParams: GetTrendingGifs.requestParams): TrendingGifsInfoResponseModel {
+    override suspend fun call(requestParams: GetTrendingGifs.RequestParams): TrendingGifsInfoResponseModel {
         return repository.getTrendingGifs(requestParams.limit, requestParams.rating)
     }
 

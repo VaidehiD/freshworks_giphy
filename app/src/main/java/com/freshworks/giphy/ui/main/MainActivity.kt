@@ -1,11 +1,11 @@
-package com.freshworks.giphy
+package com.freshworks.giphy.ui.main
 
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import com.freshworks.giphy.ui.main.SectionsPagerAdapter
 import com.freshworks.giphy.databinding.ActivityMainBinding
+import com.freshworks.giphy.ui.main.SectionsPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
