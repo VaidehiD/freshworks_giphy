@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../Library/Android/sdk/platforms/android-30/data/res/drawable/progress_horizontal.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/drawable/bg_view_gradient.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/favorite.xml" value="0.1265625" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/outline_favorite_24.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/outline_favorite_border_24.xml" value="0.21197916666666666" />

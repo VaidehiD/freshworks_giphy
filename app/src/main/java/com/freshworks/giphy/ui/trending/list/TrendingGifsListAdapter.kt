@@ -1,17 +1,20 @@
 package com.freshworks.giphy.ui.trending.list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.freshworks.domain.model.gifs.GifsResponseModel
-import com.freshworks.giphy.BR
 import com.freshworks.giphy.databinding.ListItemGifBinding
 
-class TrendingGifsListAdapter: RecyclerView.Adapter<TrendingGifsListAdapter.TrendingGifsViewHolder>() {
+class TrendingGifsListAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<GifsResponseModel, TrendingGifsListAdapter.TrendingGifsViewHolder>(
+        TrendingGifsCallback
+    ) {
 
     private var gifsList: MutableList<GifsResponseModel> = mutableListOf()
-    private var itemClickListener: OnFavoriteButtonClickedListener? = null
 
     fun submit(list: MutableList<GifsResponseModel>) {
         gifsList = list
@@ -31,29 +34,21 @@ class TrendingGifsListAdapter: RecyclerView.Adapter<TrendingGifsListAdapter.Tren
         val binding: ListItemGifBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        init {
-            updateBinding(GifFavouriteItemClickBinding())
-        }
-
-        private fun updateBinding(itemClickBinding: GifFavouriteItemClickBinding) {
-            binding.setVariable(
-                BR.itemClickListener, itemClickBinding
-            )
-        }
-
-        fun bindItems(item: GifsResponseModel, itemClickBinding: GifFavouriteItemClickBinding) {
+        fun bindItems(item: GifsResponseModel) {
             binding.apply {
                 data = item
-                updateBinding(itemClickBinding)
             }
         }
     }
 
     override fun onBindViewHolder(holder: TrendingGifsViewHolder, position: Int) {
         val gif = gifsList.get(position)
-        if (gif != null) {
-            holder.bindItems(gif, GifFavouriteItemClickBinding(itemClickListener, gif))
-            holder.binding.executePendingBindings()
+        holder.apply {
+            binding.ivGifFavorite.setOnClickListener {
+                onClickListener.onClick(gif)
+            }
+            bindItems(gif)
+            binding.executePendingBindings()
         }
     }
 
@@ -61,17 +56,17 @@ class TrendingGifsListAdapter: RecyclerView.Adapter<TrendingGifsListAdapter.Tren
         return gifsList.size
     }
 
-    fun setFavouriteItemClickListener(itemClickListener: OnFavoriteButtonClickedListener?) {
-        this.itemClickListener = itemClickListener
-    }
-}
+    companion object TrendingGifsCallback : DiffUtil.ItemCallback<GifsResponseModel>() {
+        override fun areItemsTheSame(oldItem: GifsResponseModel, newItem: GifsResponseModel): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-private class TrendingGifsCallback : DiffUtil.ItemCallback<GifsResponseModel>() {
-    override fun areItemsTheSame(oldItem: GifsResponseModel, newItem: GifsResponseModel): Boolean {
-        return oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: GifsResponseModel, newItem: GifsResponseModel): Boolean {
+            return oldItem.id == newItem.id
+        }
     }
 
-    override fun areContentsTheSame(oldItem: GifsResponseModel, newItem: GifsResponseModel): Boolean {
-        return oldItem == newItem
+    class OnClickListener(val clickListener: (gifsResponseModel: GifsResponseModel) -> Unit) {
+        fun onClick(gifsResponseModel: GifsResponseModel) = clickListener(gifsResponseModel)
     }
 }

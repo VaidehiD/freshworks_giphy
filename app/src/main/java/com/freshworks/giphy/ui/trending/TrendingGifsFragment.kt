@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.freshworks.domain.model.gifs.GifsResponseModel
 import com.freshworks.giphy.BR
 import com.freshworks.giphy.databinding.FragmentTrendingGifsBinding
-import com.freshworks.giphy.ui.trending.list.OnFavoriteButtonClickedListener
 import com.freshworks.giphy.ui.trending.list.TrendingGifsListAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -34,7 +33,8 @@ class TrendingGifsFragment : Fragment() {
         viewModel.apply {
             bindData(binding, BR.data)
         }
-        binding.gifList.adapter = TrendingGifsListAdapter()
+        binding.gifList.adapter =
+            TrendingGifsListAdapter(TrendingGifsListAdapter.OnClickListener(viewModel.onFavoriteClickListener))
         return binding.root
     }
 
@@ -73,12 +73,6 @@ class TrendingGifsFragment : Fragment() {
             recyclerView.adapter?.let {
                 (it as TrendingGifsListAdapter).submit(items)
             }
-        }
-
-        @BindingAdapter("onFavoriteButtonClicked")
-        @JvmStatic
-        fun favoriteButtonClicked(view: RecyclerView, listener: OnFavoriteButtonClickedListener?) {
-            (view.adapter as TrendingGifsListAdapter).setFavouriteItemClickListener(listener)
         }
     }
 

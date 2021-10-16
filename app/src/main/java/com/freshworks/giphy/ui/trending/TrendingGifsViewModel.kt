@@ -52,9 +52,7 @@ class TrendingGifsViewModel(
         }
     }
 
-    val favouriteButtonClicked = object : OnFavoriteButtonClickedListener {
-        override fun onClick(gifResponseModel: GifsResponseModel) {
-            println("Selected id ${gifResponseModel.id}")
-        }
+    val onFavoriteClickListener: (model : GifsResponseModel) -> Unit = {
+        println("Selected id ${it.id}")
     }
 }
