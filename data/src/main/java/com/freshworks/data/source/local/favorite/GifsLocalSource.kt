@@ -1,11 +1,8 @@
-package com.freshworks.domain.repository
+package com.freshworks.data.source.local.favorite
 
 import com.freshworks.domain.model.gifs.GifsResponseModel
-import com.freshworks.domain.model.gifs.TrendingGifsInfoResponseModel
 
-interface GifRepository {
-
-    suspend fun getTrendingGifs(limit: Int, rating: String): TrendingGifsInfoResponseModel
+interface GifsLocalSource {
 
     suspend fun getFavoriteGifs(): List<GifsResponseModel>
 

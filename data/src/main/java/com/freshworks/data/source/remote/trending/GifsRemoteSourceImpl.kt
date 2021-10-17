@@ -5,8 +5,8 @@ import com.freshworks.data.source.remote.trending.mapper.GifsRemoteMapper
 import com.freshworks.domain.model.gifs.TrendingGifsInfoResponseModel
 
 class GifsRemoteSourceImpl(
-    val api: GiphyApi,
-    val remoteMapper: GifsRemoteMapper
+    private val api: GiphyApi,
+    private val remoteMapper: GifsRemoteMapper
 ) : GifsRemoteSource {
 
     override suspend fun getTrendingGifs(

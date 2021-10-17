@@ -1,4 +1,4 @@
-package com.freshworks.giphy.ui.trending
+package com.freshworks.giphy.ui.main.trending
 
 sealed class TrendingGifsState {
 

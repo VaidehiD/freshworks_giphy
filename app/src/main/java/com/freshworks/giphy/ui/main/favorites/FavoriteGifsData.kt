@@ -1,10 +1,9 @@
-package com.freshworks.giphy.ui.trending
+package com.freshworks.giphy.ui.main.favorites
 
 import androidx.lifecycle.MutableLiveData
-import com.freshworks.domain.model.gifs.GifsResponseModel
-import com.freshworks.domain.model.gifs.TrendingGifsInfoResponseModel
+import com.freshworks.giphy.ui.main.list.GifsData
 
-data class TrendingGifsData(
+data class FavoriteGifsData(
     val isEmpty: MutableLiveData<Boolean> = MutableLiveData(false),
     val isSearching: MutableLiveData<Boolean> = MutableLiveData(false),
     val searchString: MutableLiveData<String> = MutableLiveData(""),
@@ -12,7 +11,7 @@ data class TrendingGifsData(
     val showList: MutableLiveData<Boolean> = MutableLiveData(false),
     val isLoading: MutableLiveData<Boolean> = MutableLiveData(false),
     val emptyText: MutableLiveData<String> = MutableLiveData(""),
-    val listItems: MutableLiveData<List<GifsResponseModel>> = MutableLiveData(listOf())
+    val listItems: MutableLiveData<MutableList<GifsData>> = MutableLiveData(mutableListOf())
 ) {
 
     internal fun showEmpty() {
@@ -29,12 +28,12 @@ data class TrendingGifsData(
         isLoading.postValue(true)
     }
 
-    internal fun success(response: TrendingGifsInfoResponseModel) {
+    internal fun success(gifDataList: MutableList<GifsData>) {
         isLoading.postValue(false)
         isEmpty.postValue(false)
         showList.postValue(true)
         showError.postValue(false)
 
-        listItems.postValue(response.gifsResponse)
+        listItems.postValue(gifDataList)
     }
 }

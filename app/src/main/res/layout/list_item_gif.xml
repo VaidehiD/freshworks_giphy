@@ -6,7 +6,7 @@
     <data>
         <variable
             name="data"
-            type="com.freshworks.domain.model.gifs.GifsResponseModel" />
+            type="com.freshworks.giphy.ui.main.list.GifsData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:gifSrc="@{data.images.fixedHeightModel.webpUrl}"
+            app:gifSrc="@{data.webpUrl}"
             android:scaleType="centerCrop"
             android:layout_margin="@dimen/gif_image_margin" />
 
@@ -31,11 +31,24 @@
             android:layout_width="@dimen/gif_like_width"
             android:layout_height="@dimen/gif_like_height"
             android:padding="8dp"
-            android:src="@drawable/favorite_border"
+            android:elevation="5dp"
             app:layout_constraintEnd_toEndOf="@id/gif"
             app:layout_constraintTop_toTopOf="@id/gif"
-            android:background="@drawable/bg_view_gradient"
-            />
+            android:src="@drawable/favorite"
+            app:isVisible="@{data.isFavorite}"
+            android:background="@drawable/bg_view_gradient" />
+
+        <ImageView
+            android:id="@+id/ivGifNotFavorite"
+            android:layout_width="@dimen/gif_like_width"
+            android:layout_height="@dimen/gif_like_height"
+            android:padding="8dp"
+            android:elevation="5dp"
+            app:layout_constraintEnd_toEndOf="@id/gif"
+            app:layout_constraintTop_toTopOf="@id/gif"
+            android:src="@drawable/favorite_border"
+            app:isVisible="@{!data.isFavorite}"
+            android:background="@drawable/bg_view_gradient" />
 
         <TextView
             android:id="@+id/tvGifItemTitle"

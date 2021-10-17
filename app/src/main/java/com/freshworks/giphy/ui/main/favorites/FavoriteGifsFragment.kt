@@ -1,4 +1,4 @@
-package com.freshworks.giphy.ui.trending
+package com.freshworks.giphy.ui.main.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,23 +9,24 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.freshworks.domain.model.gifs.GifsResponseModel
 import com.freshworks.giphy.BR
-import com.freshworks.giphy.databinding.FragmentTrendingGifsBinding
-import com.freshworks.giphy.ui.trending.list.TrendingGifsListAdapter
+import com.freshworks.giphy.databinding.FragmentFavoriteGifsBinding
+import com.freshworks.giphy.ui.main.list.GifsData
+import com.freshworks.giphy.ui.main.list.TrendingGifsListAdapter
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class TrendingGifsFragment : Fragment() {
+// Todo : Remove duplicated Fragment
+class FavoriteGifsFragment : Fragment() {
 
-    private lateinit var binding: FragmentTrendingGifsBinding
-    private val viewModel: TrendingGifsViewModel by viewModel()
+    private lateinit var binding: FragmentFavoriteGifsBinding
+    private val viewModel: FavoriteGifsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentTrendingGifsBinding.inflate(inflater, container, false)
+        binding = FragmentFavoriteGifsBinding.inflate(inflater, container, false)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             setVariable(BR.viewmodel, viewmodel)
@@ -43,12 +44,19 @@ class TrendingGifsFragment : Fragment() {
         viewModel.initialize()
     }
 
+    override fun onResume() {
+        viewModel.initialize()
+        super.onResume()
+    }
+
     companion object {
         private const val ARG_SECTION_NUMBER = "section_number"
 
+        private const val TABS = "tabs"
+
         @JvmStatic
-        fun newInstance(sectionNumber: Int): TrendingGifsFragment {
-            return TrendingGifsFragment().apply {
+        fun newInstance(sectionNumber: Int): FavoriteGifsFragment {
+            return FavoriteGifsFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_SECTION_NUMBER, sectionNumber)
                 }
@@ -68,7 +76,7 @@ class TrendingGifsFragment : Fragment() {
         @JvmStatic
         fun listItems(
             recyclerView: RecyclerView,
-            items: MutableList<GifsResponseModel>
+            items: MutableList<GifsData>
         ) {
             recyclerView.adapter?.let {
                 (it as TrendingGifsListAdapter).submit(items)

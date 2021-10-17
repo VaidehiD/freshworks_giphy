@@ -1,4 +1,4 @@
-package com.freshworks.giphy.ui.trending.list
+package com.freshworks.giphy.ui.main.list
 
 import com.freshworks.domain.model.gifs.GifsResponseModel
 

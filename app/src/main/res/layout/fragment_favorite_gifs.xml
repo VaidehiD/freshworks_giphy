@@ -8,11 +8,11 @@
 
         <variable
             name="viewmodel"
-            type="com.freshworks.giphy.ui.main.GifsViewModel" />
+            type="com.freshworks.giphy.ui.main.favorites.FavoriteGifsViewModel" />
 
         <variable
             name="data"
-            type="com.freshworks.giphy.ui.main.trending.TrendingGifsData" />
+            type="com.freshworks.giphy.ui.main.favorites.FavoriteGifsData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
